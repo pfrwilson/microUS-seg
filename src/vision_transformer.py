@@ -22,6 +22,9 @@ from einops.layers.torch import Rearrange
 from einops import pack, unpack
 
 
+from .registry import register_model
+
+
 
 def pair(obj):
 
