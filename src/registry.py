@@ -3,8 +3,6 @@ import copy
 import inspect
 from logging import getLogger, warn
 import warnings
-from omegaconf import OmegaConf
-import timm
 import torch
 from torch import nn
 import logging
@@ -82,11 +80,6 @@ def register_pretrained_cfg(name, cfg: PretrainedConfig):
 
 
 def create_model(name, pretrained=None, checkpoint=None, **kwargs):
-    if ":" in name:
-        name, string_encoded_cfg = name.split(":")
-        cfg = OmegaConf.to_object(OmegaConf.from_dotlist(string_encoded_cfg.split(",")))
-        kwargs.update(cfg)
-
     if len(name.split(".")) == 2:
         name, pretrained_tag = name.split(".")
     else:
